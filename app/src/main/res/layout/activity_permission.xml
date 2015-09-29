@@ -1,0 +1,33 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/text"
+    android:text="@string/permissions"
+    android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:gravity="center"/>
+
+<ListView
+    android:id="@android:id/list"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/text"
+    android:layout_above="@+id/button_save" />
+
+<Button
+    android:layout_width="155dp"
+    android:layout_height="73dp"
+    android:text="Edit &amp; Save"
+    android:id="@+id/button_save"
+    android:layout_gravity="center_horizontal"
+    android:onClick="saveApk"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
