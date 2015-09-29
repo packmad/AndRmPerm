@@ -1,4 +1,4 @@
-package dibris.andrmperm;
+package it.unige.dibris.andrmperm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -64,7 +64,7 @@ public class SaveApkService  extends IntentService {
         startNotification.setContentText("Finished removing permission from " + apkName).setNumber(2);
         mNotificationManager.notify(notifyID, startNotification.build());
 
-        Intent saveApkResultIntent = new Intent(this, SaveApkResult.class);
+        Intent saveApkResultIntent = new Intent(this, SaveResultActivity.class);
         Bundle bundle = new Bundle();
         bundle.putStringArray(MSG_SAVEAPKSERVICE, new String[]{newApk.toString(), jo.getErrors(), jo.getMessages()});
         saveApkResultIntent.putExtras(bundle);

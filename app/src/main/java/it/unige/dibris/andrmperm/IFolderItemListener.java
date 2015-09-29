@@ -1,4 +1,4 @@
-package dibris.andrmperm;
+package it.unige.dibris.andrmperm;
 
 import java.io.File;
 

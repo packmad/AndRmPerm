@@ -1,4 +1,4 @@
-package dibris.andrmperm;
+package it.unige.dibris.andrmperm;
 
 import android.content.Context;
 import android.util.AttributeSet;

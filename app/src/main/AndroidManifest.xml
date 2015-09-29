@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dibris.andrmperm" >
+    package="it.unige.dibris.andrmperm" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".FileManagerActivity"> </activity>
         <activity android:name=".PermissionsMangeActivity"> </activity>
-        <activity android:name=".SaveApkResult"> </activity>
+        <activity android:name=".SaveResultActivity"> </activity>
         <service
             android:name=".SaveApkService"
             android:exported="false"/>

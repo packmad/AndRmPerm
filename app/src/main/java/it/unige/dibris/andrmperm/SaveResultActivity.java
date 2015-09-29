@@ -1,8 +1,10 @@
-package dibris.andrmperm;
+package it.unige.dibris.andrmperm;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SaveApkResult extends Activity {
+public class SaveResultActivity extends Activity {
     private MyListAdapter mAdapter;
     private String newApkPath;
     @Override
@@ -44,10 +46,25 @@ public class SaveApkResult extends Activity {
     }
 
     public void installApk(View view) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(new File(newApkPath)), "application/vnd.android.package-archive");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        File newApkFile = new File(newApkPath);
+        if (newApkFile.exists() && !newApkFile.isDirectory()) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(newApkFile), "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder
+                    .setTitle("ERRORS!")
+                    .setMessage("There were errors during the removal process that stopped the creation of the new apk.")
+                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
     }
 
     private class MyListAdapter extends BaseAdapter {

@@ -1,4 +1,4 @@
-package dibris.andrmperm;
+package it.unige.dibris.andrmperm;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

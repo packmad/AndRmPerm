@@ -1,8 +1,6 @@
-package dibris.andrmperm;
-import it.unige.dibris.rmperm.IOutput;
+package it.unige.dibris.andrmperm;
 
-
-public class JarOutput implements IOutput {
+public class JarOutput implements it.unige.dibris.rmperm.IOutput {
     private final Level level;
     private final StringBuilder errors = new StringBuilder();
     private final StringBuilder messages = new StringBuilder();
@@ -22,11 +20,10 @@ public class JarOutput implements IOutput {
     @Override
     public void printf(Level msgLevel, String format, Object... args) {
         String strPrint = String.format(format, args);
-        if (msgLevel == IOutput.Level.ERROR)
+        if (msgLevel == it.unige.dibris.rmperm.IOutput.Level.ERROR)
             errors.append(strPrint);
         else if (msgLevel.priority >= this.level.priority)
             messages.append(strPrint);
     }
-
-
+    
 }

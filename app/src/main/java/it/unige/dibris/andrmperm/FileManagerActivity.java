@@ -1,4 +1,4 @@
-package dibris.andrmperm;
+package it.unige.dibris.andrmperm;
 
 import android.app.Activity;
 import android.app.AlertDialog;
