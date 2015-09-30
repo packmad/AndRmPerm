@@ -3,6 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Output messages:"
+        android:textColor="#0000FF"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:gravity="center"/>
+
     <ListView
         android:id="@+id/resultlist"
         android:layout_width="fill_parent"
@@ -11,8 +22,8 @@
         android:layout_above="@+id/button_install" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
         android:text="Install"
         android:id="@+id/button_install"
         android:layout_alignParentBottom="true"

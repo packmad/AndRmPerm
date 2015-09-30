@@ -28,16 +28,9 @@ public class FileManagerActivity extends Activity implements IFolderItemListener
     public void OnCannotFileRead(File file) {
         new AlertDialog.Builder(this)
                 .setTitle(
-                        "[" + file.getName()
-                                + "] folder can't be read!")
-                .setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-
-
-                            }
+                        "[" + file.getName() + "] folder can't be read!")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {}
                         }).show();
 
     }

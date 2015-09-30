@@ -6,7 +6,9 @@ android:layout_height="match_parent">
 
 <TextView
     android:id="@+id/text"
+    android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="@string/permissions"
+    android:textColor="#0000FF"
     android:layout_width="wrap_content"
     android:layout_height="48dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -21,8 +23,8 @@ android:layout_height="match_parent">
     android:layout_above="@+id/button_save" />
 
 <Button
-    android:layout_width="155dp"
-    android:layout_height="73dp"
+    android:layout_width="130dp"
+    android:layout_height="65dp"
     android:text="Edit &amp; Save"
     android:id="@+id/button_save"
     android:layout_gravity="center_horizontal"

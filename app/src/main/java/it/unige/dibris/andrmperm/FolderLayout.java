@@ -54,7 +54,6 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
         File[] files = f.listFiles();
 
         if (!dirPath.equals(root)) {
-
             item.add(root);
             path.add(root);
             item.add("../");
@@ -72,7 +71,6 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
         }
 
         Log.i("Folders", files.length + "");
-
         setItemList(item);
 
     }
@@ -108,4 +106,6 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         onListItemClick((ListView) arg0, arg0, arg2, arg3);
     }
+
+
 }

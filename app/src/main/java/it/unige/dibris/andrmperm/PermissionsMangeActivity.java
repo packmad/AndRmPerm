@@ -28,8 +28,10 @@ public class PermissionsMangeActivity extends ListActivity {
     private CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            if (compoundButton != null) {
-                final int position = getListView().getPositionForView(compoundButton);
+            final ListView listView = getListView();
+            if (compoundButton != null && listView != null) {
+
+                final int position = listView.getPositionForView(compoundButton);
                 if (position != ListView.INVALID_POSITION) {
                     PermissionsMangeActivity.this.permissionAdapter.getItem(position).setChecked(b);
                 }
@@ -136,7 +138,7 @@ public class PermissionsMangeActivity extends ListActivity {
             PermissionFlag pf = modelItems.get(position);
 
             // assign values if the object is not null
-            if (modelItems != null) {
+            if (modelItems != null && viewHolder != null) {
                 // get the TextView from the ViewHolder and then set the text (item name) and other values
                 viewHolder.title.setText(pf.getName());
                 viewHolder.time.setText("descrizione");

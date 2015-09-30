@@ -40,6 +40,9 @@ public class SaveResultActivity extends Activity {
         if (all.size() == 0) {
             all.add("No messages... it's strange!");
         }
+        else {
+            all.removeAll(Arrays.asList("", null));
+        }
         ListView list = (ListView) findViewById(R.id.resultlist);
         mAdapter = new MyListAdapter(this, all);
         list.setAdapter(mAdapter);
