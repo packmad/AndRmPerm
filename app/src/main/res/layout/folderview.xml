@@ -8,8 +8,8 @@
     <TextView
         android:id="@+id/path"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Path"
-        android:textColor="#0000FF"
+        android:text="PATH: "
+        style="@style/Titles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </TextView>

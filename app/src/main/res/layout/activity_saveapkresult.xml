@@ -6,8 +6,8 @@
     <TextView
         android:id="@+id/text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Output messages:"
-        android:textColor="#0000FF"
+        android:text="OUTPUT MESSAGES:"
+        style="@style/Titles"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -22,14 +22,14 @@
         android:layout_above="@+id/button_install" />
 
     <Button
-        android:layout_width="130dp"
-        android:layout_height="65dp"
+        style="@style/Buttons"
         android:text="Install"
         android:id="@+id/button_install"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="installApk"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

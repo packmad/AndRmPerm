@@ -1,18 +1,19 @@
 package it.unige.dibris.andrmperm;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,24 +21,11 @@ import java.util.List;
 import it.unige.dibris.rmperm.IOutput;
 import it.unige.dibris.rmperm.Main;
 
-public class PermissionsMangeActivity extends ListActivity {
+public class PermissionsMangeActivity extends Activity {
     public static final String MSG_PERMISSIONSMANAGE = "MSG_PERMISSIONSMANAGE";
     private PermissionAdapter permissionAdapter;
     private String apkpath;
 
-    private CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            final ListView listView = getListView();
-            if (compoundButton != null && listView != null) {
-
-                final int position = listView.getPositionForView(compoundButton);
-                if (position != ListView.INVALID_POSITION) {
-                    PermissionsMangeActivity.this.permissionAdapter.getItem(position).setChecked(b);
-                }
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +33,34 @@ public class PermissionsMangeActivity extends ListActivity {
         setContentView(R.layout.activity_permission);
         Intent intent = getIntent();
         apkpath = intent.getStringExtra(FileManagerActivity.MSG_FILEMANAGER);
-        permissionAdapter = new PermissionAdapter(this, getApkPermission(apkpath));
-        setListAdapter(permissionAdapter);
+
+        permissionAdapter = new PermissionAdapter(this, R.layout.permcheck_item, getApkPermission(apkpath));
+        ListView listView = (ListView) findViewById(R.id.permissionlist);
+        listView.setAdapter(permissionAdapter);
+        /*
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PermissionFlag pf = (PermissionFlag) parent.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(),
+                        "Clicked on Row: " + pf.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        */
+
+        Button myButton = (Button) findViewById(R.id.button_save);
+        myButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveApk();
+                    }
+                });
+
     }
 
 
-    public void saveApk(View view) {
+    public void saveApk() {
         StringBuilder sb = new StringBuilder();
         for(PermissionFlag pf : permissionAdapter.getItems()) {
             if(pf.isChecked()) {
@@ -91,8 +101,8 @@ public class PermissionsMangeActivity extends ListActivity {
         private final List<PermissionFlag> modelItems;
 
 
-        public PermissionAdapter(Context context, List<PermissionFlag> resource) {
-            super(context,R.layout.list_item,resource);
+        public PermissionAdapter(Context context, int textViewResourceId, List<PermissionFlag> resource) {
+            super(context, textViewResourceId, resource);
             this.context = context;
             this.modelItems = resource;
         }
@@ -114,44 +124,41 @@ public class PermissionsMangeActivity extends ListActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder;
+            ViewHolder holder = null;
             if (convertView == null) {
+                LayoutInflater vi = (LayoutInflater)getSystemService(
+                        Context.LAYOUT_INFLATER_SERVICE);
+                convertView = vi.inflate(R.layout.permcheck_item, null);
 
-                // inflate the layout, see how we can use this context reference?
-                LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-                convertView = inflater.inflate(R.layout.list_item, parent, false);
+                holder = new ViewHolder();
+                holder.title = (TextView) convertView.findViewById(R.id.title);
+                holder.checked = (CheckBox) convertView.findViewById(R.id.checked);
+                convertView.setTag(holder);
 
-                // we'll set up the ViewHolder
-                viewHolder = new ViewHolder();
-                viewHolder.title = (TextView) convertView.findViewById(R.id.title);
-                //viewHolder.description = (TextView) convertView.findViewById(R.id.description);
-                viewHolder.enabled = (CheckBox) convertView.findViewById(R.id.checked);
-                viewHolder.enabled.setOnCheckedChangeListener(checkedChangeListener);
-                convertView.setTag(viewHolder);
-            } else {
-                // we've just avoided calling findViewById() on resource every description
-                // just use the viewHolder instead
-                viewHolder = (ViewHolder) convertView.getTag();
+                holder.checked.setOnClickListener( new View.OnClickListener() {
+                    public void onClick(View v) {
+                        CheckBox cb = (CheckBox) v ;
+                        PermissionFlag pf = (PermissionFlag) cb.getTag();
+                        pf.setChecked(cb.isChecked());
+                    }
+                });
+            }
+            else {
+                holder = (ViewHolder) convertView.getTag();
             }
 
-            // object item based on the position
             PermissionFlag pf = modelItems.get(position);
+            holder.title.setText(pf.getName());
+            holder.checked.setChecked(pf.isChecked());
+            holder.checked.setTag(pf);
 
-            // assign values if the object is not null
-            if (modelItems != null && viewHolder != null) {
-                // get the TextView from the ViewHolder and then set the text (item name) and other values
-                viewHolder.title.setText(pf.getName());
-                //viewHolder.description.setText("descrizione");
-                viewHolder.enabled.setChecked(pf.isChecked());
-            }
             return convertView;
         }
     }
 
     static class ViewHolder {
         TextView title;
-        //TextView description;
-        CheckBox enabled;
+        CheckBox checked;
     }
 
 }

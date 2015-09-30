@@ -8,7 +8,7 @@ android:layout_height="match_parent">
     android:id="@+id/text"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="@string/permissions"
-    android:textColor="#0000FF"
+    style="@style/Titles"
     android:layout_width="wrap_content"
     android:layout_height="48dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -16,7 +16,7 @@ android:layout_height="match_parent">
     android:gravity="center"/>
 
 <ListView
-    android:id="@android:id/list"
+    android:id="@+id/permissionlist"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/text"
@@ -24,13 +24,13 @@ android:layout_height="match_parent">
     tools:listitem="@android:layout/simple_list_item_1" />
 
 <Button
-    android:layout_width="130dp"
-    android:layout_height="65dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:text="Edit &amp; Save"
     android:id="@+id/button_save"
     android:layout_gravity="center_horizontal"
-    android:onClick="saveApk"
     android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true" />
+    android:layout_centerHorizontal="true"
+    style="@style/Buttons" />
 
 </RelativeLayout>
