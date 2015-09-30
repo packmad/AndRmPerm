@@ -124,12 +124,12 @@ public class PermissionsMangeActivity extends ListActivity {
                 // we'll set up the ViewHolder
                 viewHolder = new ViewHolder();
                 viewHolder.title = (TextView) convertView.findViewById(R.id.title);
-                viewHolder.time = (TextView) convertView.findViewById(R.id.time);
+                //viewHolder.description = (TextView) convertView.findViewById(R.id.description);
                 viewHolder.enabled = (CheckBox) convertView.findViewById(R.id.checked);
                 viewHolder.enabled.setOnCheckedChangeListener(checkedChangeListener);
                 convertView.setTag(viewHolder);
             } else {
-                // we've just avoided calling findViewById() on resource every time
+                // we've just avoided calling findViewById() on resource every description
                 // just use the viewHolder instead
                 viewHolder = (ViewHolder) convertView.getTag();
             }
@@ -141,7 +141,7 @@ public class PermissionsMangeActivity extends ListActivity {
             if (modelItems != null && viewHolder != null) {
                 // get the TextView from the ViewHolder and then set the text (item name) and other values
                 viewHolder.title.setText(pf.getName());
-                viewHolder.time.setText("descrizione");
+                //viewHolder.description.setText("descrizione");
                 viewHolder.enabled.setChecked(pf.isChecked());
             }
             return convertView;
@@ -150,7 +150,7 @@ public class PermissionsMangeActivity extends ListActivity {
 
     static class ViewHolder {
         TextView title;
-        TextView time;
+        //TextView description;
         CheckBox enabled;
     }
 

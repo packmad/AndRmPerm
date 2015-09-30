@@ -8,21 +8,13 @@
 
     <TextView
         android:id="@+id/title"
-        android:text=""
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_toLeftOf="@+id/checked"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_toLeftOf="@+id/checked"
-        android:text="1234567890"
-        />
+        android:textSize="16sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/checked" />
 
     <CheckBox
         android:id="@+id/checked"

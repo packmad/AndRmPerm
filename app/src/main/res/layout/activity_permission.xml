@@ -20,7 +20,8 @@ android:layout_height="match_parent">
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/text"
-    android:layout_above="@+id/button_save" />
+    android:layout_above="@+id/button_save"
+    tools:listitem="@android:layout/simple_list_item_1" />
 
 <Button
     android:layout_width="130dp"
