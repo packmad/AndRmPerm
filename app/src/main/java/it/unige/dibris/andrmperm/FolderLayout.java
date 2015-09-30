@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FolderLayout extends LinearLayout implements AdapterView.OnItemClickListener {
@@ -69,7 +70,6 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
                 item.add(file.getName());
 
         }
-
         Log.i("Folders", files.length + "");
         setItemList(item);
 
@@ -77,7 +77,8 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
 
     // can manually set Item to display, if you want
     public void setItemList(List<String> item){
-        ArrayAdapter<String> fileList = new ArrayAdapter<String>(context, R.layout.filesystemrow, item);
+        //ArrayAdapter<String> fileList = new ArrayAdapter<String>(context, R.layout.filesystemrow, item);
+        FileManagerAdapter fileList = new FileManagerAdapter(context, R.layout.filesystemrow, item);
         lstView.setAdapter(fileList);
         lstView.setOnItemClickListener(this);
     }
