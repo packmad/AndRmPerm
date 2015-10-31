@@ -16,8 +16,13 @@ public class MainActivity extends Activity {
     }
 
     public void readApk(View view) {
-            Intent intent = new Intent(this, FileManagerActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(this, FileManagerActivity.class);
+        startActivity(intent);
+    }
+
+    public void getInstalledApp(View view) {
+        Intent intent = new Intent(this, InstalledAppsActivity.class);
+        startActivity(intent);
     }
 
     @Override

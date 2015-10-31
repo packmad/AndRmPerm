@@ -22,6 +22,7 @@ import it.unige.dibris.rmperm.IOutput;
 import it.unige.dibris.rmperm.Main;
 
 public class PermissionsMangeActivity extends Activity {
+    public static final String EXTRA_PERMISSIONSMANAGE = "EXTRA_PERMISSIONSMANAGE";
     public static final String MSG_PERMISSIONSMANAGE = "MSG_PERMISSIONSMANAGE";
     private PermissionAdapter permissionAdapter;
     private String apkpath;
@@ -32,7 +33,7 @@ public class PermissionsMangeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
         Intent intent = getIntent();
-        apkpath = intent.getStringExtra(FileManagerActivity.MSG_FILEMANAGER);
+        apkpath = intent.getStringExtra(PermissionsMangeActivity.EXTRA_PERMISSIONSMANAGE);
 
         permissionAdapter = new PermissionAdapter(this, R.layout.permcheck_item, getApkPermission(apkpath));
         ListView listView = (ListView) findViewById(R.id.permissionlist);

@@ -11,8 +11,6 @@ import java.io.File;
 public class FileManagerActivity extends Activity implements IFolderItemListener {
     FolderLayout localFolders;
 
-    public static final String MSG_FILEMANAGER = "MSG_FILEMANAGER";
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,7 @@ public class FileManagerActivity extends Activity implements IFolderItemListener
     // when you click a file
     public void OnFileClicked(File file) {
         Intent intent = new Intent(this, PermissionsMangeActivity.class);
-        intent.putExtra(MSG_FILEMANAGER, file.getAbsolutePath());
+        intent.putExtra(PermissionsMangeActivity.EXTRA_PERMISSIONSMANAGE, file.getAbsolutePath());
         startActivity(intent);
     }
 

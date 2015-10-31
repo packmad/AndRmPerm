@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".InstalledAppsActivity"> </activity>
         <activity android:name=".FileManagerActivity"> </activity>
         <activity android:name=".PermissionsMangeActivity"> </activity>
         <activity android:name=".SaveResultActivity"> </activity>
