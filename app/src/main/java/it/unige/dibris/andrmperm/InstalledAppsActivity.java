@@ -20,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import it.unige.dibris.rmperm.Main;
+
 public class InstalledAppsActivity extends Activity {
     InstalledAppsActivity iaa = this;
     ListView apps;
@@ -42,11 +44,9 @@ public class InstalledAppsActivity extends Activity {
                 PackageInfo pi = packageList1.get(arg2);
                 String publicSourceDir = pi.applicationInfo.publicSourceDir;
                 String packageName = pi.packageName;
-                Log.d("############", ">>> " + publicSourceDir+" "+packageName);
+                //Log.d("############", ">>> " + publicSourceDir+" "+packageName);
                 File src = new File(publicSourceDir);
-                File dst = new File(Environment.getExternalStorageDirectory().toString()+"/AndRmPerm");
-                dst.mkdirs();
-                dst = new File(dst.getPath()+"/"+packageName+".apk");
+                File dst = new File(MainActivity.FOLDER_FILE.getPath()+"/"+packageName+".apk");
                 try {
                     dst.createNewFile();
                 } catch (IOException e) {

@@ -26,7 +26,7 @@ public class PermissionsMangeActivity extends Activity {
     public static final String MSG_PERMISSIONSMANAGE = "MSG_PERMISSIONSMANAGE";
     private PermissionAdapter permissionAdapter;
     private String apkpath;
-
+    private boolean noPerms = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,12 @@ public class PermissionsMangeActivity extends Activity {
         setContentView(R.layout.activity_permission);
         Intent intent = getIntent();
         apkpath = intent.getStringExtra(PermissionsMangeActivity.EXTRA_PERMISSIONSMANAGE);
-
-        permissionAdapter = new PermissionAdapter(this, R.layout.permcheck_item, getApkPermission(apkpath));
+        List<PermissionFlag> pfl = getApkPermission(apkpath);
+        noPerms = pfl.isEmpty();
+        if (noPerms) {
+            Utilities.ShowAlertDialog(this, "NO PERMISSION", "This app doesn't require any permission");
+        }
+        permissionAdapter = new PermissionAdapter(this, R.layout.permcheck_item, pfl);
         ListView listView = (ListView) findViewById(R.id.permissionlist);
         listView.setAdapter(permissionAdapter);
         /*
@@ -62,6 +66,10 @@ public class PermissionsMangeActivity extends Activity {
 
 
     public void saveApk() {
+        if (noPerms) {
+            Utilities.ShowAlertDialog(this, "NO PERMISSION", "I said that this app doesn't require any permission, what are you removing?");
+            return;
+        }
         StringBuilder sb = new StringBuilder();
         for(PermissionFlag pf : permissionAdapter.getItems()) {
             if(pf.isChecked()) {

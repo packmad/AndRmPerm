@@ -1,6 +1,5 @@
 package it.unige.dibris.andrmperm;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -56,17 +55,7 @@ public class SaveResultActivity extends Activity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder
-                    .setTitle("ERRORS!")
-                    .setMessage("There were errors during the removal process that stopped the creation of the new apk.")
-                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
+            Utilities.ShowAlertDialog(this, "ERRORS!", "There were errors during the removal process that stopped the creation of the new apk.");
         }
     }
 

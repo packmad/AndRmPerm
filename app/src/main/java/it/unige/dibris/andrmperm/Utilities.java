@@ -1,6 +1,9 @@
 package it.unige.dibris.andrmperm;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Environment;
 import android.util.Log;
 
@@ -32,4 +35,20 @@ public class Utilities {
         }
 
     }
+
+    public static void ShowAlertDialog(Context context, String title, String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
 }

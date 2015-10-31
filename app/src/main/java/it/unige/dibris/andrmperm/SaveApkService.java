@@ -49,14 +49,12 @@ public class SaveApkService  extends IntentService {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(notifyID, startNotification.build());
 
-        File sdcard = Environment.getExternalStorageDirectory();
-        File customClasses = new File(sdcard, "custom.apk");
-        File newApk = new File(sdcard, apkName + "_rmperm.apk");
+        File newApk = new File(MainActivity.FOLDER_FILE, apkName + "_rmperm.apk");
         JarOutput jo = new JarOutput(IOutput.Level.VERBOSE);
         String[] args = {
                 "--input" , apkPath,
                 "--remove",
-                "--custom-methods", customClasses.toString(),
+                "--custom-methods", MainActivity.CUSTOM_FILE.toString(),
                 "--permissions",  perms,
                 "--output", newApk.toString()
         };

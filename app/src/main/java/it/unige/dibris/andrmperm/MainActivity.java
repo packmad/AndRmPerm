@@ -2,17 +2,54 @@ package it.unige.dibris.andrmperm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class MainActivity extends Activity {
+
+    private static final String FOLDER_PATH = Environment.getExternalStorageDirectory().toString()+"/AndRmPerm";
+    public static final File FOLDER_FILE = new File(FOLDER_PATH);
+    public static final File CUSTOM_FILE = new File(FOLDER_PATH, "custom.apk");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FOLDER_FILE.mkdirs();
+        if (!CUSTOM_FILE.exists()) {
+            try {
+                AssetManager assetManager = getAssets();
+                InputStream in = assetManager.open("custom.apk");
+                OutputStream out = new FileOutputStream(CUSTOM_FILE);
+                byte[] buffer = new byte[1024];
+
+                int read;
+                while ((read = in.read(buffer)) != -1) {
+
+                    out.write(buffer, 0, read);
+
+                }
+
+                in.close();
+                out.flush();
+                out.close();
+            }
+            catch (IOException ioe) {
+                //TODO
+            }
+
+        }
     }
 
     public void readApk(View view) {

@@ -25,6 +25,13 @@
         <activity android:name=".FileManagerActivity"> </activity>
         <activity android:name=".PermissionsMangeActivity"> </activity>
         <activity android:name=".SaveResultActivity"> </activity>
+        <activity android:name=".ReceiverActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
         <service
             android:name=".SaveApkService"
             android:exported="false"/>
