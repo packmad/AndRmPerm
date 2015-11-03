@@ -4,6 +4,9 @@ package it.unige.dibris.andrmperm;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Environment;
 import android.util.Log;
 
@@ -14,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class Utilities {
     private final static int BUFSIZE = 1024;
@@ -50,5 +54,19 @@ public class Utilities {
         alertDialog.show();
     }
 
+    public static boolean isAppInstalled(Context context, String packName) {
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        final List<ResolveInfo> pkgAppsList = context.getPackageManager().queryIntentActivities(mainIntent, 0);
+        for (ResolveInfo ri : pkgAppsList) {
+           if (ri.activityInfo.packageName.equals(packName))
+               return true;
+        }
+        return false;
+    }
 
+    public static String getFilenameWithoutExtension(File f) {
+        String fName = f.getName();
+        return fName.substring(0,fName.length()-4);
+    }
 }

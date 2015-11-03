@@ -2,13 +2,15 @@ package it.unige.dibris.andrmperm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,8 +50,9 @@ public class MainActivity extends Activity {
             catch (IOException ioe) {
                 //TODO
             }
-
         }
+
+        return;
     }
 
     public void readApk(View view) {
@@ -60,6 +63,11 @@ public class MainActivity extends Activity {
     public void getInstalledApp(View view) {
         Intent intent = new Intent(this, InstalledAppsActivity.class);
         startActivity(intent);
+    }
+
+    public void exit(View view) {
+        finish();
+        System.exit(0);
     }
 
     @Override

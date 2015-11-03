@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +71,18 @@ public class PermissionsMangeActivity extends Activity {
     public void saveApk() {
         if (noPerms) {
             Utilities.ShowAlertDialog(this, "NO PERMISSION", "I said that this app doesn't require any permission, what are you removing?");
+            return;
+        }
+        boolean noChecks = Iterables.all(
+                permissionAdapter.getItems(),
+                new Predicate<PermissionFlag>() {
+                    public boolean apply(PermissionFlag pf) {
+                        return !pf.isChecked();
+                    }
+                }
+        );
+        if (noChecks) {
+            Utilities.ShowAlertDialog(this, "NO SELECTION", "You didn't select some permission!");
             return;
         }
         StringBuilder sb = new StringBuilder();

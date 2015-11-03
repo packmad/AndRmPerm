@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,26 +23,29 @@ import java.util.List;
 
 public class SaveResultActivity extends Activity {
     private MyListAdapter mAdapter;
-    private String newApkPath;
+    private String newApkPath = "/sdcard/AndRmPerm/com.ninegag.android.app.apk";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saveapkresult);
 
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
-        String[] apkAndMsgs = b.getStringArray(SaveApkService.MSG_SAVEAPKSERVICE);
-        newApkPath = apkAndMsgs[0];
-        ArrayList<String> errors = new ArrayList<String>(Arrays.asList(apkAndMsgs[1].split("\n")));
-        ArrayList<String> messages = new ArrayList<String>(Arrays.asList(apkAndMsgs[2].split("\n")));
         ArrayList<String> all = new ArrayList<String>();
-        all.addAll(errors);
-        all.addAll(messages);
-        if (all.size() == 0) {
-            all.add("No messages... it's strange!");
-        }
-        else {
-            all.removeAll(Arrays.asList("", null));
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String[] apkAndMsgs = bundle.getStringArray(SaveApkService.MSG_SAVEAPKSERVICE);
+            if (apkAndMsgs.length > 0) {
+                newApkPath = apkAndMsgs[0];
+                ArrayList<String> errors = new ArrayList<String>(Arrays.asList(apkAndMsgs[1].split("\n")));
+                ArrayList<String> messages = new ArrayList<String>(Arrays.asList(apkAndMsgs[2].split("\n")));
+                all.addAll(errors);
+                all.addAll(messages);
+                if (all.size() == 0) {
+                    all.add("No messages... it's strange!");
+                } else {
+                    all.removeAll(Arrays.asList("", null));
+                }
+            }
         }
         ListView list = (ListView) findViewById(R.id.resultlist);
         mAdapter = new MyListAdapter(this, all);
@@ -49,6 +54,36 @@ public class SaveResultActivity extends Activity {
 
     public void installApk(View view) {
         File newApkFile = new File(newApkPath);
+        final PackageInfo pi = getPackageManager().getPackageArchiveInfo(newApkFile.toString(), 0);
+        if (pi != null) {
+            boolean installed = false;
+            try {
+                getPackageManager().getPackageInfo(pi.packageName, PackageManager.GET_ACTIVITIES);
+                installed = true;
+            } catch (PackageManager.NameNotFoundException e) {
+                installed = false;
+            }
+            if (installed) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder
+                        .setTitle("APP ALREADY INSTALLED")
+                        .setMessage("You need to uninstall the old app before install this new one!")
+                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(Intent.ACTION_DELETE, Uri.fromParts("package", pi.packageName, null));
+                                startActivity(intent);
+                            }})
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+                return;
+            }
+        }
+
         if (newApkFile.exists() && !newApkFile.isDirectory()) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(newApkFile), "application/vnd.android.package-archive");
