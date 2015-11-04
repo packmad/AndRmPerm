@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Output Messages:"
+        android:text="@string/out_msgs"
         style="@style/Titles"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

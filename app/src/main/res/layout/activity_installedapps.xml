@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Apps on your phone:"
+        android:text="@string/apps_installed"
         style="@style/Titles"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

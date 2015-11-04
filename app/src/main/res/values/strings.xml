@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">AndRmPerm</string>
-
-    <string name="permissions">Permissions to remove:</string>
     <string name="action_settings">Settings</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -9,7 +7,18 @@
     <string name="errors">ERRORS!</string>
     <string name="close">Close</string>
 
-    <!--MainActivity-->
+    <!--buttons-->
+    <string name="my_apps">MY APPS</string>
+    <string name="read_apk">Read APK</string>
+    <string name="exit">EXIT</string>
+    <string name=""></string>
+
+
+
+    <!--titles-->
+    <string name="permissions">Permissions to remove:</string>
+    <string name="apps_installed">Apps installed on your phone:</string>
+    <string name="out_msgs">Output Messages:</string>
 
     <!--FolderLayout-->
     <string name="location">Location</string>
