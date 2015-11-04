@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 
 import java.io.File;
@@ -42,8 +41,8 @@ public class SaveApkService  extends IntentService {
         NotificationCompat.Builder startNotification =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(android.R.drawable.ic_notification_overlay)
-                        .setContentTitle("RmPerm")
-                        .setContentText("Removing permissions from " + apkName)
+                        .setContentTitle("AndRmPerm")
+                        .setContentText(getResources().getString(R.string.removing_permissions) + ' ' + apkName)
                         .setAutoCancel(true)
                         .setNumber(1);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -59,7 +58,7 @@ public class SaveApkService  extends IntentService {
                 "--output", newApk.toString()
         };
         Main.androidMain(jo, args);
-        startNotification.setContentText("Finished removing permission from " + apkName).setNumber(2);
+        startNotification.setContentText(getResources().getString(R.string.finished_removing) +' '+ apkName).setNumber(2);
         mNotificationManager.notify(notifyID, startNotification.build());
 
         Intent saveApkResultIntent = new Intent(this, SaveResultActivity.class);

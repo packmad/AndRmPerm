@@ -23,7 +23,7 @@ import java.util.List;
 
 public class SaveResultActivity extends Activity {
     private MyListAdapter mAdapter;
-    private String newApkPath = "/sdcard/AndRmPerm/com.ninegag.android.app.apk";
+    private String newApkPath;// = "/sdcard/AndRmPerm/com.ninegag.android.app.apk";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class SaveResultActivity extends Activity {
                 all.addAll(errors);
                 all.addAll(messages);
                 if (all.size() == 0) {
-                    all.add("No messages... it's strange!");
+                    all.add(getResources().getString(R.string.no_messages));
                 } else {
                     all.removeAll(Arrays.asList("", null));
                 }
@@ -66,14 +66,14 @@ public class SaveResultActivity extends Activity {
             if (installed) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder
-                        .setTitle("APP ALREADY INSTALLED")
-                        .setMessage("You need to uninstall the old app before install this new one!")
-                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                        .setTitle(getResources().getString(R.string.already_installed))
+                        .setMessage(getResources().getString(R.string.need_uninstall))
+                        .setPositiveButton(getResources().getString(R.string.yes),  new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(Intent.ACTION_DELETE, Uri.fromParts("package", pi.packageName, null));
                                 startActivity(intent);
                             }})
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
@@ -90,7 +90,11 @@ public class SaveResultActivity extends Activity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else {
-            Utilities.ShowAlertDialog(this, "ERRORS!", "There were errors during the removal process that stopped the creation of the new apk.");
+            Utilities.ShowAlertDialog(
+                    this,
+                    getResources().getString(R.string.errors),
+                    getResources().getString(R.string.were_errors)
+            );
         }
     }
 

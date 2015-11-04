@@ -2,15 +2,14 @@ package it.unige.dibris.andrmperm;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +41,6 @@ public class MainActivity extends Activity {
                     out.write(buffer, 0, read);
 
                 }
-
                 in.close();
                 out.flush();
                 out.close();
@@ -52,7 +50,6 @@ public class MainActivity extends Activity {
             }
         }
 
-        return;
     }
 
     public void readApk(View view) {
@@ -80,6 +77,9 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            //TODO
+            Toast toast = Toast.makeText(this, getResources().getString(R.string.not_implemented), Toast.LENGTH_LONG);
+            toast.show();
             return true;
         }
         return super.onOptionsItemSelected(item);

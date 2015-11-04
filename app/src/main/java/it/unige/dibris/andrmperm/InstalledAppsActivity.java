@@ -1,26 +1,21 @@
 package it.unige.dibris.andrmperm;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import it.unige.dibris.rmperm.Main;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class InstalledAppsActivity extends Activity {
     InstalledAppsActivity iaa = this;

@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -40,7 +38,11 @@ public class PermissionsMangeActivity extends Activity {
         List<PermissionFlag> pfl = getApkPermission(apkpath);
         noPerms = pfl.isEmpty();
         if (noPerms) {
-            Utilities.ShowAlertDialog(this, "NO PERMISSION", "This app doesn't require any permission");
+            Utilities.ShowAlertDialog(
+                    this,
+                    getResources().getString(R.string.no_perm),
+                    getResources().getString(R.string.doesnt_require)
+            );
         }
         permissionAdapter = new PermissionAdapter(this, R.layout.permcheck_item, pfl);
         ListView listView = (ListView) findViewById(R.id.permissionlist);
@@ -70,7 +72,11 @@ public class PermissionsMangeActivity extends Activity {
 
     public void saveApk() {
         if (noPerms) {
-            Utilities.ShowAlertDialog(this, "NO PERMISSION", "I said that this app doesn't require any permission, what are you removing?");
+            Utilities.ShowAlertDialog(
+                    this,
+                    getResources().getString(R.string.no_perm),
+                    getResources().getString(R.string.what_are_remove)
+            );
             return;
         }
         boolean noChecks = Iterables.all(
@@ -82,7 +88,10 @@ public class PermissionsMangeActivity extends Activity {
                 }
         );
         if (noChecks) {
-            Utilities.ShowAlertDialog(this, "NO SELECTION", "You didn't select some permission!");
+            Utilities.ShowAlertDialog(
+                    this,
+                    getResources().getString(R.string.no_selection),
+                    getResources().getString(R.string.didnt_select));
             return;
         }
         StringBuilder sb = new StringBuilder();

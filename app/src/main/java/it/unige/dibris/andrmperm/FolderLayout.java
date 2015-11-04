@@ -6,14 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FolderLayout extends LinearLayout implements AdapterView.OnItemClickListener {
@@ -48,7 +46,7 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
     }
 
     private void getDir(String dirPath, ListView v) {
-        myPath.setText("LOCATION < " + dirPath + " >");
+        myPath.setText(getResources().getString(R.string.location) + ": < " + dirPath + " >");
         item = new ArrayList<String>();
         path = new ArrayList<String>();
         File f = new File(dirPath);
@@ -68,9 +66,7 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
                 item.add(file.getName() + "/");
             else
                 item.add(file.getName());
-
         }
-        Log.i("Folders", files.length + "");
         setItemList(item);
 
     }
@@ -107,6 +103,5 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         onListItemClick((ListView) arg0, arg0, arg2, arg3);
     }
-
 
 }

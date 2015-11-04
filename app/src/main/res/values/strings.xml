@@ -3,4 +3,44 @@
 
     <string name="permissions">Permissions to remove:</string>
     <string name="action_settings">Settings</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="not_implemented">Not implemented yet</string>
+    <string name="errors">ERRORS!</string>
+    <string name="close">Close</string>
+
+    <!--MainActivity-->
+
+    <!--FolderLayout-->
+    <string name="location">Location</string>
+
+    <!--FileManagerActivity-->
+    <string name="folder_cant">folder can\'t be read</string>
+
+    <!--PermissionManageActivity-->
+    <string name="no_perm">NO PERMISSION</string>
+    <string name="doesnt_require">This app doesn\'t require any permission</string>
+    <string name="what_are_remove">I said that this app doesn\'t require any permission, what are you removing?</string>
+    <string name="no_selection">NO SELECTION</string>
+    <string name="didnt_select">You didn\'t select some permission!</string>
+
+    <!--ReceiverActivity-->
+    <string name="must_share">You must share only Google Play Store links</string>
+
+    <!--SaveApkService-->
+    <string name="removing_permissions">Removing permissions from</string>
+    <string name="finished_removing">Finished removing permission from</string>
+
+
+    <!--SaveResultActivity-->
+    <string name="no_messages">No messages... it\'s strange</string>
+    <string name="already_installed">APP ALREADY INSTALLED</string>
+    <string name="need_uninstall">You need to uninstall the old app before install this new one!</string>
+    <string name="were_errors">There were errors during the removal process that stopped the creation of the new apk.</string>
+
+
+    <!--
+    <string name=""></string>
+    getResources().getString(R.string.)
+    -->
 </resources>

@@ -5,14 +5,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +41,7 @@ public class Utilities {
         alertDialogBuilder
                 .setTitle(title)
                 .setMessage(message)
-                .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                .setNegativeButton(context.getResources().getString(R.string.close), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }

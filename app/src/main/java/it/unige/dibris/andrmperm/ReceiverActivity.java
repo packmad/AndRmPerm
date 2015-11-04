@@ -27,7 +27,11 @@ private static final String EVOZI = "http://apps.evozi.com/apk-downloader/?id=";
             }
         }
         else {
-            Utilities.ShowAlertDialog(this, "ERROR!", "You must share Google Play link");
+            Utilities.ShowAlertDialog(
+                    this,
+                    getResources().getString(R.string.errors),
+                    getResources().getString(R.string.must_share)
+            );
         }
     }
 }

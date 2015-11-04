@@ -203,6 +203,10 @@
     <!-- y -->
 
     <color name="YellowGreen">#9ACD32</color>
+    <color name="primary_dark_material_light">#17caa9</color>
+    <color name="background_material_light">#e90d0d</color>
+    <color name="statusBarColor">#d53838</color>
+    <color name="primary_material_light">#ffffff</color>
     <!-- z -->
 
 </resources>

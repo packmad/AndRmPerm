@@ -1,7 +1,5 @@
 package it.unige.dibris.andrmperm;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class InstalledAppsAdapter extends BaseAdapter{
+import java.util.List;
 
+public class InstalledAppsAdapter extends BaseAdapter{
     List <PackageInfo> packageList;
     Activity context;
     PackageManager packageManager;
-
 
     public InstalledAppsAdapter (Activity context, List <PackageInfo> packageList,
                        PackageManager packageManager) {
@@ -25,7 +23,6 @@ public class InstalledAppsAdapter extends BaseAdapter{
         this.context = context;
         this.packageList = packageList;
         this.packageManager = packageManager;
-
     }
 
     private class ViewHolder {
@@ -47,37 +44,24 @@ public class InstalledAppsAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
-
         LayoutInflater inflater = context.getLayoutInflater();
-
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_item, null);
             holder = new ViewHolder();
-
-            holder.apkName = (TextView) convertView
-                    .findViewById(R.id.textView1);
-
+            holder.apkName = (TextView) convertView.findViewById(R.id.textView1);
             convertView.setTag(holder);
 
         } else {
-
             holder = (ViewHolder) convertView.getTag();
         }
-
         PackageInfo packageInfo = (PackageInfo) getItem(position);
-
-        Drawable appIcon = packageManager
-                .getApplicationIcon(packageInfo.applicationInfo);
-        String appName = packageManager.getApplicationLabel(
-                packageInfo.applicationInfo).toString();
+        Drawable appIcon = packageManager.getApplicationIcon(packageInfo.applicationInfo);
+        String appName = packageManager.getApplicationLabel(packageInfo.applicationInfo).toString();
         appIcon.setBounds(0, 0, 40, 40);
         holder.apkName.setCompoundDrawables(appIcon, null, null, null);
         holder.apkName.setCompoundDrawablePadding(15);
         holder.apkName.setText(appName);
-
         return convertView;
-
     }
-
 
 }
