@@ -22,4 +22,10 @@
     <string name="what_are_remove">Ho detto che questa app non richiede alcun permesso, cosa stai cercando di rimuovere?</string>
     <string name="no">No</string>
     <string name="action_settings">Impostazoni</string>
+    <string name="apps_installed">App installate:</string>
+    <string name="exit">USCITA</string>
+    <string name="out_msgs">Messaggi di output:</string>
+    <string name="read_apk">Leggi APK</string>
+    <string name="my_apps">Le Mie App</string>
+    <string name="install">Installa</string>
 </resources>

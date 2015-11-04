@@ -11,14 +11,13 @@
     <string name="my_apps">MY APPS</string>
     <string name="read_apk">Read APK</string>
     <string name="exit">EXIT</string>
-    <string name=""></string>
-
-
+    <string name="install">Install</string>
 
     <!--titles-->
     <string name="permissions">Permissions to remove:</string>
-    <string name="apps_installed">Apps installed on your phone:</string>
-    <string name="out_msgs">Output Messages:</string>
+    <string name="apps_installed">Apps installed:</string>
+    <string name="out_msgs">Output messages:</string>
+    <string name="edit_and_save">Edit &amp; Save</string>
 
     <!--FolderLayout-->
     <string name="location">Location</string>

@@ -27,7 +27,7 @@
 
     <Button
         style="@style/Buttons"
-        android:text="Install"
+        android:text="@string/install"
         android:id="@+id/button_install"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
