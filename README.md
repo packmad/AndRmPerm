@@ -8,4 +8,4 @@ You can clone this repo or you can comfortably download it from the Google Play 
 
 ## Description
 
-I spent some hours for screenshot, description and video... check it on the Google Play Store.
+I spent some hours for screenshot, description and video... see them on the Google Play Store.
