@@ -19,6 +19,11 @@
     <string name="out_msgs">Output messages:</string>
     <string name="edit_and_save">Edit &amp; Save</string>
 
+    <!--MainActivity-->
+    <string name="remove_from">Remove permissions... from where?</string>
+    <string name="from_apk">...from an apk</string>
+    <string name="from_app">...from your app</string>
+
     <!--FolderLayout-->
     <string name="location">Location</string>
 

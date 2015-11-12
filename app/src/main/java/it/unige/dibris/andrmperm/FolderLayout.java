@@ -12,14 +12,38 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FolderLayout extends LinearLayout implements AdapterView.OnItemClickListener {
 
+    public class Item implements Comparable<Item> {
+        private String name;
+        private String path;
+
+        public Item(String name, String path) {
+            this.name = name;
+            this.path = path;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        @Override
+        public int compareTo(Item another) {
+            return this.getName().compareTo(another.getName());
+        }
+    }
+
     private Context context;
     private IFolderItemListener folderListener;
-    private List<String> item = null;
-    private List<String> path = null;
+    private List<Item> items = null;
     private String root = "/";
     private TextView myPath;
     private ListView lstView;
@@ -47,43 +71,43 @@ public class FolderLayout extends LinearLayout implements AdapterView.OnItemClic
 
     private void getDir(String dirPath, ListView v) {
         myPath.setText(getResources().getString(R.string.location) + ": < " + dirPath + " >");
-        item = new ArrayList<String>();
-        path = new ArrayList<String>();
+        items = new ArrayList<Item>();
+
         File f = new File(dirPath);
         File[] files = f.listFiles();
 
         if (!dirPath.equals(root)) {
-            item.add(root);
-            path.add(root);
-            item.add("../");
-            path.add(f.getParent());
-
+            Item r = new Item(root, root);
+            Item p = new Item("../", f.getParent());
+            items.add(r);
+            items.add(p);
         }
         for (int i = 0; i < files.length; i++) {
             File file = files[i];
-            path.add(file.getPath());
+            String fname = file.getName();
             if (file.isDirectory())
-                item.add(file.getName() + "/");
-            else
-                item.add(file.getName());
+                fname = fname + "/";
+            Item item = new Item(fname, file.getPath());
+            items.add(item);
         }
-        setItemList(item);
+        Collections.sort(items.subList(2, items.size()));
+        setItemList();
 
     }
 
     // can manually set Item to display, if you want
-    public void setItemList(List<String> item){
-        //ArrayAdapter<String> fileList = new ArrayAdapter<String>(context, R.layout.filesystemrow, item);
-        FileManagerAdapter fileList = new FileManagerAdapter(context, R.layout.filesystemrow, item);
+    public void setItemList(){
+        FileManagerAdapter fileList = new FileManagerAdapter(context, R.layout.filesystemrow, items);
         lstView.setAdapter(fileList);
         lstView.setOnItemClickListener(this);
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
-        File file = new File(path.get(position));
+        String path = items.get(position).getPath();
+        File file = new File(path);
         if (file.isDirectory()) {
             if (file.canRead())
-                getDir(path.get(position), l);
+                getDir(path, l);
             else {
                 // what to do when folder is unreadable
                 if (folderListener != null) {

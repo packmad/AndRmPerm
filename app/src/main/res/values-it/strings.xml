@@ -28,4 +28,8 @@
     <string name="read_apk">Leggi APK</string>
     <string name="my_apps">Le Mie App</string>
     <string name="install">Installa</string>
+    <string name="edit_and_save">Modifica e Salva</string>
+    <string name="from_apk">...da un apk</string>
+    <string name="from_app">...da una tua app</string>
+    <string name="remove_from">Rimuovo i permessi... da dove?</string>
 </resources>
