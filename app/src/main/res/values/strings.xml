@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">AndRmPerm</string>
-    <string name="action_settings">Settings</string>
+
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="not_implemented">Not implemented yet</string>
     <string name="errors">ERRORS!</string>
     <string name="close">Close</string>
+
+    <!--actions-->
+    <string name="action_settings">Settings</string>
+    <string name="action_donate">Donate!</string>
 
     <!--buttons-->
     <string name="my_apps">MY APPS</string>
