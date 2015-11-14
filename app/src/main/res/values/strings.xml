@@ -12,8 +12,8 @@
     <string name="action_donate">Donate!</string>
 
     <!--buttons-->
-    <string name="my_apps">MY APPS</string>
-    <string name="read_apk">Read APK</string>
+    <string name="my_apps">FROM APPS</string>
+    <string name="read_apk">FROM APK</string>
     <string name="exit">EXIT</string>
     <string name="install">Install</string>
 
