@@ -4,7 +4,7 @@ AndRmPerm is an Android app that uses [RmPerm](https://github.com/simoneaonzo/Rm
 
 ## Available on Google Play Store
 
-You can clone this repo or you can comfortably download it from the Google Play Store.
+You can clone this repo or you can comfortably download the app [from the Google Play Store](https://play.google.com/store/apps/details?id=it.unige.dibris.andrmperm).
 
 ## Description
 
