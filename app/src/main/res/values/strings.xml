@@ -45,8 +45,8 @@
     <string name="must_share">You must share only Google Play Store links</string>
 
     <!--SaveApkService-->
-    <string name="removing_permissions">Removing permissions from</string>
-    <string name="finished_removing">Finished removing permission from</string>
+    <string name="removing">removing</string>
+    <string name="finished">finished</string>
 
 
     <!--SaveResultActivity-->

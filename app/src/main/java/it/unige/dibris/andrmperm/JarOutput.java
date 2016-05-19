@@ -1,6 +1,6 @@
 package it.unige.dibris.andrmperm;
 
-public class JarOutput implements it.unige.dibris.rmperm.IOutput {
+public class JarOutput implements it.saonzo.rmperm.IOutput {
     private final Level level;
     private final StringBuilder errors = new StringBuilder();
     private final StringBuilder messages = new StringBuilder();
@@ -20,7 +20,7 @@ public class JarOutput implements it.unige.dibris.rmperm.IOutput {
     @Override
     public void printf(Level msgLevel, String format, Object... args) {
         String strPrint = String.format(format, args);
-        if (msgLevel == it.unige.dibris.rmperm.IOutput.Level.ERROR)
+        if (msgLevel == it.saonzo.rmperm.IOutput.Level.ERROR)
             errors.append(strPrint);
         else if (msgLevel.priority >= this.level.priority)
             messages.append(strPrint);

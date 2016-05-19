@@ -19,8 +19,8 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unige.dibris.rmperm.IOutput;
-import it.unige.dibris.rmperm.Main;
+import it.saonzo.rmperm.IOutput;
+import it.saonzo.rmperm.Main;
 
 public class PermissionsMangeActivity extends Activity {
     public static final String EXTRA_PERMISSIONSMANAGE = "EXTRA_PERMISSIONSMANAGE";

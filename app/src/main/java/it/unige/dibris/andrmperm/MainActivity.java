@@ -20,8 +20,9 @@ import java.io.OutputStream;
 public class MainActivity extends Activity {
 
     private static final String FOLDER_PATH = Environment.getExternalStorageDirectory().toString()+"/AndRmPerm";
+    public static final String CUSTOM_METHODS_RES = "custom.dex";
     public static final File FOLDER_FILE = new File(FOLDER_PATH);
-    public static final File CUSTOM_FILE = new File(FOLDER_PATH, "custom.apk");
+    public static final File CUSTOM_FILE = new File(FOLDER_PATH, CUSTOM_METHODS_RES);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
         if (!CUSTOM_FILE.exists()) {
             try {
                 AssetManager assetManager = getAssets();
-                InputStream in = assetManager.open("custom.apk");
+                InputStream in = assetManager.open(CUSTOM_METHODS_RES);
                 OutputStream out = new FileOutputStream(CUSTOM_FILE);
                 byte[] buffer = new byte[1024];
 
