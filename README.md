@@ -1,6 +1,6 @@
 # AndRmPerm
 
-AndRmPerm is an Android application for remove unwanted permissions from Android APKs.
+[AndRmPerm](https://github.com/simoneaonzo/AndRmPerm/blob/master/app/app-release.apk?raw=true) is an Android application for remove unwanted permissions from Android APKs.
 
 How it works? It uses [RmPerm](https://github.com/simoneaonzo/RmPerm) (follow the link for a more detailed description) as external library and use the custom methods defined [here](https://github.com/simoneaonzo/ApkWithCustomMethods).
 
